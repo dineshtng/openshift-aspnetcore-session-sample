@@ -20,10 +20,10 @@ namespace AspNetCoreSessionSample.Controllers
                 visitCount = Convert.ToInt32(bytes[0]) + 1;
             }
             HttpContext.Session.Set("VisitCount", new byte[]{Convert.ToByte(visitCount)});
-            ViewBag["VisitCount"] = visitCount;
+            ViewBag.VisitCount = visitCount;
 
             var hostName = System.IO.File.ReadAllText("/etc/hostname");
-            ViewBag["HostName"] = hostName;
+            ViewBag.HostName = hostName;
             return View();
         }
     }
