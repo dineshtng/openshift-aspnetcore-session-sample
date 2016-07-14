@@ -29,6 +29,7 @@ namespace AspNetCoreSessionSample
             services.AddDistributedRedisCache(options =>
                 {
                     options.Configuration = "10.1.0.4";
+                    options.InstanceName = "Session";
                 });
             services.AddMvc();
         }
