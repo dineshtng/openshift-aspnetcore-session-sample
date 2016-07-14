@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Redis;
+using System.IO;
 
 namespace AspNetCoreSessionSample
 {
@@ -21,6 +22,8 @@ namespace AspNetCoreSessionSample
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDataProtection()  
+                .PersistKeysToFileSystem(new DirectoryInfo(@"/key"));  
             services.AddSession();
             //if (Program.RedisConnectionString != null)
             //{
