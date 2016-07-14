@@ -25,6 +25,7 @@ namespace AspNetCoreSessionSample.Controllers
             var hostName = System.IO.File.ReadAllText("/etc/hostname");
             ViewBag.HostName = hostName;
             ViewBag.SessionId = HttpContext.Session.Id;
+            ViewBag.Cookieid = HttpContext.Request.Cookies[".AspNetCore.Session"];
             return View();
         }
     }
