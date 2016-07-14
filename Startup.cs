@@ -19,13 +19,17 @@ namespace AspNetCoreSessionSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSession();
-			if (Program.RedisConnectionString != null)
-            {
-                services.AddDistributedRedisCache(options =>
+            //if (Program.RedisConnectionString != null)
+            //{
+            //   services.AddDistributedRedisCache(options =>
+            //    {
+            //        options.Configuration = Program.RedisConnectionString;
+            //    });
+            //}
+            services.AddDistributedRedisCache(options =>
                 {
-                    options.Configuration = Program.RedisConnectionString;
+                    options.Configuration = "10.1.0.4";
                 });
-            }
             services.AddMvc();
         }
 
