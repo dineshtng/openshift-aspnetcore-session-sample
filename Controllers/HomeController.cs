@@ -24,6 +24,7 @@ namespace AspNetCoreSessionSample.Controllers
 
             var hostName = System.IO.File.ReadAllText("/etc/hostname");
             ViewBag.HostName = hostName;
+            ViewBag.SessionId = HttpContext.Session.Id;
             return View();
         }
     }

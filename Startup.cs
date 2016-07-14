@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Redis;
 
 namespace AspNetCoreSessionSample
 {
@@ -26,11 +29,16 @@ namespace AspNetCoreSessionSample
             //        options.Configuration = Program.RedisConnectionString;
             //    });
             //}
-            services.AddDistributedRedisCache(options =>
+            services.AddSingleton<IDistributedCache>(sp =>
+                new RedisCache(new RedisCacheOptions
                 {
-                    options.Configuration = "10.1.0.4";
-                    options.InstanceName = "Session";
-                });
+                    Configuration = "10.1.0.4"
+                }));
+            // services.AddDistributedRedisCache(options =>
+            //     {
+            //         options.Configuration = "10.1.0.4";
+            //         options.InstanceName = "Session";
+            //     });
             services.AddMvc();
         }
 
