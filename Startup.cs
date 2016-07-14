@@ -23,25 +23,15 @@ namespace AspNetCoreSessionSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDataProtection()  
-                .PersistKeysToFileSystem(new DirectoryInfo(@"/key"));  
+                .PersistKeysToFileSystem(new DirectoryInfo(@"/key"));
             services.AddSession();
-            //if (Program.RedisConnectionString != null)
-            //{
-            //   services.AddDistributedRedisCache(options =>
-            //    {
-            //        options.Configuration = Program.RedisConnectionString;
-            //    });
-            //}
-            services.AddSingleton<IDistributedCache>(sp =>
-                new RedisCache(new RedisCacheOptions
-                {
-                    Configuration = "10.1.0.4"
-                }));
-            // services.AddDistributedRedisCache(options =>
-            //     {
-            //         options.Configuration = "10.1.0.4";
-            //         options.InstanceName = "Session";
-            //     });
+            if (Program.RedisConnectionString != null)
+            {
+              services.AddDistributedRedisCache(options =>
+               {
+                   options.Configuration = Program.RedisConnectionString;
+               });
+            }
             services.AddMvc();
         }
 
