@@ -26,7 +26,7 @@ namespace AspNetCoreSessionSample
             var host = Environment.GetEnvironmentVariable("ASPNETCORE_Redis_Cache");
             Console.WriteLine("$ASPNETCORE_Redis_Cache: " + host);
             services.AddDataProtection()  
-                .PersistKeysToRedis("10.1.0.4");
+                .PersistKeysToRedis(host);
             services.AddSession();
             if (Program.RedisConnectionString != null)
             {
