@@ -17,6 +17,7 @@
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.AspNetCore.StaticFiles": "1.0.0",
     "Microsoft.AspNetCore.DataProtection": "1.0.0",
+    "Tanaka733.AspNetCore.DataProtection.Redis": "0.1.0-alpha",
     "Microsoft.AspNetCore.Session": "1.0.0",
     "Ngonzalez.Microsoft.Extensions.Caching.Redis": "1.0.2",
     "Microsoft.EntityFrameworkCore.Sqlite": "1.0.0",
