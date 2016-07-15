@@ -14,6 +14,7 @@ namespace AspNetCoreSessionSample
 
         public static void Main(string[] args)
         {
+        Console.WriteLine("Main Start ");
            var config = new ConfigurationBuilder()
                 .AddCommandLine(args)
                 .AddEnvironmentVariables(prefix: "ASPNETCORE_")
@@ -21,7 +22,7 @@ namespace AspNetCoreSessionSample
             var url = config["ASPNETCORE_URLS"] ?? "http://*:8080";
             RedisConnectionString = config["ASPNETCORE_Redis_Cache"];
             Console.WriteLine("RedisConnectionString: " + RedisConnectionString);
-            Console.WriteLine("Env:RedisConnectionString: " + Environment.GetEnvironmentVariable("ASPNETCORE_Redis_Cache"));
+            
             var host = new WebHostBuilder()
                 .UseConfiguration(config)
                 .UseKestrel()

@@ -23,14 +23,16 @@ namespace AspNetCoreSessionSample
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var host = Environment.GetEnvironmentVariable("ASPNETCORE_Redis_Cache");
+            Console.WriteLine("$ASPNETCORE_Redis_Cache: " + host);
             services.AddDataProtection()  
-                .PersistKeysToRedis(Program.RedisConnectionString);
+                .PersistKeysToRedis(host);
             services.AddSession();
             if (Program.RedisConnectionString != null)
             {
               services.AddDistributedRedisCache(options =>
                {
-                   options.Configuration = Program.RedisConnectionString;
+                   options.Configuration = host;
                });
             }
             services.AddMvc();
